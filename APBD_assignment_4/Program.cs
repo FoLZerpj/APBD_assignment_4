@@ -82,4 +82,12 @@ app.MapGet("/visits", () => visits)
     .WithName("GetVisits")
     .WithOpenApi();
 
+app.MapPost("/visits", (DateTime date, int animalId, string description, float visitPrice) =>
+    {
+        Animal animal = animals.First(animal => animal.Id == animalId);
+        visits.Add(new AnimalVisit(date, animal, description, visitPrice));
+    })
+    .WithName("AddVisit")
+    .WithOpenApi();
+
 app.Run();
