@@ -72,4 +72,14 @@ app.MapDelete("/animals/{id:int}", (int id) =>
     .WithName("DeleteAnimalById")
     .WithOpenApi();
 
+var visits = new List<AnimalVisit>()
+{
+    new AnimalVisit(DateTime.Now, animals[0], "Description1", 1.0f),
+    new AnimalVisit(DateTime.Now, animals[1], "Description1", 2.0f),
+};
+
+app.MapGet("/visits", () => visits)
+    .WithName("GetVisits")
+    .WithOpenApi();
+
 app.Run();
